@@ -13,4 +13,7 @@ ENTRYPOINT [ "/usr/local/bin/getssl" ]
 
 CMD [ "-h" ]
 
+
+
+LABEL maintainer="Masahiro Yamada <adamay909@gmail.com>"
 	

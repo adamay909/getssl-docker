@@ -4,7 +4,11 @@ Runs getssl
 ([https://github.com/srvrco/getssl/](https://github.com/srvrco/getssl)) to 
 obtain SSL certificates for an Apache server.
 
-Dockerfile for this image is available at 
+A prebuilt image is on Docker Hub:
+
+	docker pull adamaymas/getssl
+	
+Dockerfile is available at 
 [https://github.com/adamay909/getssl-docker](https://github.com/adamay909/getssl-docker).
 
 ## Basic Usage
@@ -29,12 +33,17 @@ I do something like
 	  adamaymas/getssl \
 		-w /getssl -a
 
-You can get a default configuration file as output with the -c option. You will 
-need to pay attention to the paths in the config files---the paths in the 
-config files are paths inside the container, not the host system; other than 
-that, it's straightforward.
+You can get default configuration files as output with the -c option. E.g.:
 
-You will have to reload Apache separately after running getssl.  No big deal if 
+	docker run -v /opt/getssl:/getssl adamaymas/getssl -c -w /getssl your.domain.com
+
+This will create default config files for your.domain.com in the /opt/getssl (on host) directory. Make sure to edit it appropriately. In particular, you need to supply your account email for using let's encrypt. The files are fairly self-explanatory. You need to pay attention to the paths in the config files---the paths in the 
+config files are paths inside the container, not the host system. Other than 
+that, it's straightforward. You can get more information in the [getssl documentations](https://github.com/srvrco/getssl/wiki). 
+
+
+
+You have to reload Apache separately after running getssl.  No big deal if 
 you are using a cron job or the like to run getssl periodically. 
 
 
@@ -42,10 +51,10 @@ you are using a cron job or the like to run getssl periodically.
 
 Why run getssl inside a container? Because I can! Actually, there are some 
 security reasons. Best practice is to have the server certificate as readable 
-only by root so that Apache can load it on start-up before switching uid to 
+only by root. Apache can load it on start-up before switching uid to 
 some non-privileged user. But this means that getssl needs to run with root 
 privileges so it can modify the server certificates. Running getssl inside a 
-container as root enables us to run getssl as root and yet severely 
+container as root enables us to severely 
 restrict what it can do to the host system. In the above example, apart from 
 the getssl configuration directory, getssl only sees DOCUMENT_ROOT/.well-known 
 and the directory storing the ssl files. It cannot access any other host

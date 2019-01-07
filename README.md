@@ -37,7 +37,7 @@ You can get default configuration files as output with the -c option. E.g.:
 
 	docker run -v /opt/getssl:/getssl adamaymas/getssl -c -w /getssl your.domain.com
 
-This will create default config files for your.domain.com in the /opt/getssl (on host) directory. Make sure to edit it appropriately. In particular, you need to supply your account email for using let's encrypt. The files are fairly self-explanatory. You need to pay attention to the paths in the config files---the paths in the 
+This will create default config files for your.domain.com in the /opt/getssl (on host) directory. Make sure to edit it appropriately. In particular, you need to supply your account email for using [Let's Encrypt](https://letsencrypt.org/). The files are fairly self-explanatory. You need to pay attention to the paths in the config files---the paths in the 
 config files are paths inside the container, not the host system. Other than 
 that, it's straightforward. You can get more information in the [getssl documentations](https://github.com/srvrco/getssl/wiki). 
 

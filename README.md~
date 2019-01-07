@@ -4,9 +4,6 @@ Runs getssl
 ([https://github.com/srvrco/getssl/](https://github.com/srvrco/getssl)) to 
 obtain SSL certificates for an Apache server.
 
-Dockerfile for this image is available at 
-[https://github.com/adamay909/getssl-docker](https://github.com/adamay909/getssl-docker).
-
 ## Basic Usage
 
 When you run

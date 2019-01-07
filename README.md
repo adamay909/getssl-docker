@@ -45,7 +45,7 @@ security reasons. Best practice is to have the server certificate as readable
 only by root so that Apache can load it on start-up before switching uid to 
 some non-privileged user. But this means that getssl needs to run with root 
 privileges so it can modify the server certificates. Running getssl inside a 
-container as root means enables us to run getssl as root and yet severely 
+container as root enables us to run getssl as root and yet severely 
 restrict what it can do to the host system. In the above example, apart from 
 the getssl configuration directory, getssl only sees DOCUMENT_ROOT/.well-known 
 and the directory storing the ssl files. It cannot access any other host
